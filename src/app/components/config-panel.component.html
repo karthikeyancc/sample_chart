@@ -1,0 +1,104 @@
+<div class="config-panel-root">
+
+  <!-- ===== TAB HEADER + TICK ===== -->
+  <div class="tabs-container">
+    <div class="tabs-left">
+      @for (section of sectionList; track section.name) {
+        <div
+          class="tab-item"
+          [class.active]="section.name === activeSection"
+          (click)="onTabClick(section.name)"
+        >
+          {{ section.name }}
+        </div>
+      }
+    </div>
+
+    <button
+      class="tick-btn"
+      title="Apply chart-wide configuration"
+      (click)="onApplyClicked()"
+    >
+      ✓
+    </button>
+  </div>
+  <!-- ===== TAB CONTENT ===== -->
+  <div class="tab-content">
+    @for (section of sectionList; track section.name) {
+      @if (section.name === activeSection) {
+
+        <div class="section-panel">
+          @for (field of section.fields; track field.name) {
+            <div class="form-row">
+
+              <label class="field-label">
+                {{ field.name }}
+                @if (field.description) {
+                  <span class="hint">{{ field.description }}</span>
+                }
+              </label>
+
+              <!-- STRING -->
+              @if (field.type === 'string') {
+                <input
+                  type="text"
+                  class="input-field"
+                  [(ngModel)]="formValue[field.name]"
+                  (ngModelChange)="onFieldChanged(field, $event)"
+                  />
+                }
+                
+                <!-- NUMBER -->
+                @if (field.type === 'number') {
+                  <input
+                  type="number"
+                  class="input-field"
+                  [(ngModel)]="formValue[field.name]"
+                  (ngModelChange)="onFieldChanged(field, $event)"
+                  />
+                }
+                
+              <!-- BOOLEAN -->
+              @if (field.type === 'boolean') {
+                <label class="switch">
+                  <input
+                    type="checkbox"
+                    [(ngModel)]="formValue[field.name]"
+                    (ngModelChange)="onFieldChanged(field, $event)"
+                    />
+                    <span class="slider"></span>
+                  </label>
+                }
+                
+                <!-- SELECT -->
+                @if (field.type === 'select') {
+                  <select
+                  class="select-field"
+                  [(ngModel)]="formValue[field.name]"
+                  (ngModelChange)="onFieldChanged(field, $event)"
+                  >
+                  @for (opt of field.enum!; track opt) {
+                    <option [value]="opt">{{ opt }}</option>
+                  }
+                </select>
+              }
+              
+              <!-- COLOR -->
+              @if (field.type === 'color') {
+                <input
+                type="color"
+                class="color-picker"
+                [(ngModel)]="formValue[field.name]"
+                (ngModelChange)="onFieldChanged(field, $event)"
+                />
+              }
+
+            </div>
+          }
+        </div>
+
+      }
+    }
+  </div>
+
+</div>

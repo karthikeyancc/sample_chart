@@ -1,0 +1,8 @@
+{
+  "/rwapi": {
+    "target": "http://localhost/gss",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  }
+}

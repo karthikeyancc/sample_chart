@@ -1,0 +1,75 @@
+<div class="chart-panel h-100 d-flex flex-column">
+
+  <!-- ================= HEADER ================= -->
+  <div class="p-2 border-bottom bg-light d-flex justify-content-between align-items-center">
+    <h6 class="m-0">Chart Preview</h6>
+    <button class="btn btn-sm btn-outline-secondary" (click)="buildChart()">
+      Refresh
+    </button>
+  </div>
+
+  <!-- ================= CONTENT ================= -->
+  <div class="flex-grow-1 d-flex overflow-hidden">
+
+    <!-- ================= FILTER PANEL ================= -->
+    @if (filters.length > 0) {
+      <div
+        class="border-end p-2"
+        style="width:260px; overflow:auto">
+
+        <div class="fw-semibold mb-2">Filters</div>
+
+        @for (f of filters; track f.field) {
+          <div class="mb-3">
+            <label class="form-label small">{{ f.label }}</label>
+
+            <!-- Normal filter -->
+            @if (f.operator !== 'between') {
+              <input
+                class="form-control form-control-sm"
+                [(ngModel)]="f.value1"
+              />
+            }
+
+            <!-- Between filter -->
+            @if (f.operator === 'between') {
+              <div class="d-flex gap-1">
+                <input
+                  class="form-control form-control-sm"
+                  [(ngModel)]="f.value1"
+                />
+                <input
+                  class="form-control form-control-sm"
+                  [(ngModel)]="f.value2"
+                />
+              </div>
+            }
+          </div>
+        }
+      </div>
+    }
+    <!-- ================= CHART AREA ================= -->
+    <div class="flex-grow-1 position-relative">
+
+      @if (!chartOptions?.series) {
+        <div class="text-muted d-flex justify-content-center align-items-center h-100">
+          <div class="text-center">
+            <div>No chart data yet</div>
+            <div class="small">
+              Select X and Y columns to generate the chart
+            </div>
+          </div>
+        </div>
+      } @else {
+        <div
+          echarts
+          [options]="chartOptions"
+          (chartInit)="onChartInit($any($event))"
+          class="echart-container h-100">
+        </div>
+      }
+
+    </div>
+
+  </div>
+</div>

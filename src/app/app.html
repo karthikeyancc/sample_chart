@@ -1,0 +1,34 @@
+<div class="app-shell">
+
+  <!-- ===== TOP ROW (33%) ===== -->
+  <div class="top-row">
+
+    <!-- Chart-wide (33%) -->
+    <div class="panel chart-wide">
+      <div class="panel-header">
+        <h5 class="title">{{ title }}</h5>
+      </div>
+      <div class="panel-body">
+        <app-chart-config-panel></app-chart-config-panel>
+      </div>
+    </div>
+
+    <!-- Series-wide / Grid (66%) -->
+    <div class="panel series-wide">
+      <div class="panel-body">
+        <app-grid-panel></app-grid-panel>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ===== BOTTOM ROW (67%) ===== -->
+  <div class="bottom-row">
+    <div class="panel chart-panel">
+      <div class="panel-body">
+        <app-chart-panel></app-chart-panel>
+      </div>
+    </div>
+  </div>
+
+</div>

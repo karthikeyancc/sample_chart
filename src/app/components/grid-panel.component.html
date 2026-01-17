@@ -1,0 +1,18 @@
+<div class="h-100 d-flex flex-column">
+  <!-- Header -->
+  <div class="d-flex justify-content-between align-items-center">
+    <h6 class="m-0">Data Table</h6>
+
+    <div>
+      <!-- Future toolbar buttons (export, filter etc.) -->
+      <button class="btn btn-sm btn-outline-secondary me-1" (click)="applyConfig()">
+        Apply Changes
+      </button>
+    </div>
+  </div>
+
+  <!-- Tabulator container -->
+  <div class="flex-grow-1 overflow-hidden">
+    <div id="dataGrid" class="h-100 w-100"></div>
+  </div>
+</div>
