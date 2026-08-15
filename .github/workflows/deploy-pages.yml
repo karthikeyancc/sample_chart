@@ -48,7 +48,7 @@ jobs:
         with:
           path: ./dist/echarts-tabulator
 
-      - name: Debug: list artifacts for this run (verify the upload)
+      - name: Debug: list artifacts for this run verify the upload
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
