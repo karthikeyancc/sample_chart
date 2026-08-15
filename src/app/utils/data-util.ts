@@ -375,7 +375,8 @@ export class ChartUtils {
         break;
       case 'Cumulative Sum':
         val = items.map((item, i) =>
-            items.slice(0, i + 1).reduce((sum, value) => sum + value, 0);
+            items.slice(0, i + 1).reduce((sum, value) => sum + value, 0)
+        );
         //optimal way let cumulative = 0; val = items.map(item => { cumulative += item; return cumulative;});
         break;
       case 'Average':
