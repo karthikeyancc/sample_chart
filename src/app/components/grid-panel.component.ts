@@ -7,7 +7,7 @@ import { CHART_TYPES } from '../utils/data-util';
 
 const STRING_FILTERS = ["String equal", "String contains", "String starts with", "String ends with"];
 const NUMBER_FILTERS = ["Number equal", "Number Vertical List", "Number Between", "Number greater than", "Number greater than or equal to", "Number less than", "Number less than or equal to", "Number drop down", "Number Top n", "Number Least n"];
-const DATE_FILTERS = ["Date equal", "Date Vertical List", "Date drop down", "Date Between": , "Date after": , "Date before": , "Date Relative": , ];
+const DATE_FILTERS = ["Date equal", "Date Vertical List", "Date drop down", "Date Between" , "Date after" , "Date before" , "Date Relative" ];
 
 @Component({
   selector: 'app-grid-panel',
