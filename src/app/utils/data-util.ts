@@ -359,7 +359,7 @@ export class ChartUtils {
     }
   }
 
-  aggregate(cfg: Record<string, any>, val: number | null, items: number[]) {
+  aggregate(cfg: Record<string, any>, val: number | number[]| null, items: number[]) {
     switch (cfg['agg']) {
       case 'Number':
         val = items.length ? items[0] : null;
