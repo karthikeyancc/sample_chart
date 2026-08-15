@@ -5,9 +5,9 @@ import { CHART_TYPES } from '../utils/data-util';
 
 /* ---------------- FILTER OPERATORS ---------------- */
 
-const STRING_FILTERS = ['contains','startsWith','endsWith','equals', 'notEquals',];
-const NUMBER_FILTERS = ['=','!=','>','>=','<','<=','between',];
-const DATE_FILTERS = ['=','!=','before','after','between',];
+const STRING_FILTERS = ["String equal", "String contains", "String starts with", "String ends with"];
+const NUMBER_FILTERS = ["Number equal", "Number Vertical List", "Number Between", "Number greater than", "Number greater than or equal to", "Number less than", "Number less than or equal to", "Number drop down", "Number Top n", "Number Least n"];
+const DATE_FILTERS = ["Date equal", "Date Vertical List", "Date drop down", "Date Between": , "Date after": , "Date before": , "Date Relative": , ];
 
 @Component({
   selector: 'app-grid-panel',
@@ -19,7 +19,7 @@ export class GridPanelComponent implements AfterViewInit, OnDestroy,OnInit {
   @Input() data: any[] = [];  // API result JSON array
   
   private grid: any;
-  aggregationTypes = ["None", "Number", "Count", "Sum", "Average", "Minimum", "Maximum"];
+  aggregationTypes = ["None", "Number", "Count", "Distinct Count", "Sum","Cumulative Sum", "Average", "Minimum", "Maximum"];
   chartOptions:Record<string,any>={};
   chartType: string = this.chartOptions["Chart-Type"] || 'line';
   ngOnInit() {
@@ -110,7 +110,7 @@ export class GridPanelComponent implements AfterViewInit, OnDestroy,OnInit {
           field: "agg",
           editor: "list",
           editorParams: {
-            values: ["None", "Number","Count", "Sum", "Average", "Minimum", "Maximum"]
+            values: ["None", "Number", "Count", "Distinct Count", "Sum","Cumulative Sum", "Average", "Minimum", "Maximum"]
           },
         },
         {
