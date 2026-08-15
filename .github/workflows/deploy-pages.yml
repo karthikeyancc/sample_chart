@@ -4,10 +4,7 @@ on:
     branches:
       - main
       - master
-  pull_request:        # optional: run on PRs too so CI checks before merge
-    branches:
-      - main
-      - master
+  workflow_dispatch:
 
 jobs:
   build-and-deploy:
@@ -21,20 +18,26 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0           # ensures full history, latest code
-          persist-credentials: true
+          fetch-depth: 0
 
       - name: Setup Node.js (use Node 24)
         uses: actions/setup-node@v4
         with:
           node-version: '24'
-          cache: 'npm'             # built-in caching for node modules
+          cache: 'npm'
 
       - name: Install dependencies
         run: npm ci
 
       - name: Build (production)
         run: npm run build:github
+
+      - name: Verify build output
+        run: |
+          echo "Dist listing:"
+          ls -la ./dist || true
+          ls -la ./dist/echarts-tabulator || true
+          pwd
 
       - name: Upload artifact for GitHub Pages
         uses: actions/upload-pages-artifact@v3
