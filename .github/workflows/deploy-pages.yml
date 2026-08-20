@@ -13,7 +13,10 @@ jobs:
       contents: read
       pages: write
       id-token: write
-
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+      
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -68,4 +71,5 @@ jobs:
             | python -m json.tool || true
 
       - name: Deploy to GitHub Pages
+        id: deployment
         uses: actions/deploy-pages@v1
